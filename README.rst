@@ -26,7 +26,7 @@ and use it as your email backend:
 
     # settings.py
 
-    EMAIL_BACKEND = 'hueymail.backends.HueyEmailBackend'
+    EMAIL_BACKEND = 'hueymail.backends.EmailBackend'
 
 
 Last, choose which email backend Huey should dispatch to via the ``HUEY_BACKEND``
@@ -45,11 +45,12 @@ How it works
 What happens when you send an email?
 Basically this:
 
-- Django creates a new instance of ``HueyEmailBackend``, and calls its
+- Django creates a new instance of ``hueymail.backends.EmailBackend``, and calls its
   ``send_messages()`` method with the email messages it wants to send.
 
-- The ``send_messages()`` method of the ``HueyEmailBackend`` instance dispatches a Huey
-  task (``dispatch_messages()``), which is responsible for sending those messages.
+- The ``send_messages()`` method of the ``hueymail.backends.EmailBackend`` instance
+  dispatches a Huey task called ``dispatch_messages()``, which is responsible for
+  sending those messages.
 
 - The ``dispatch_messages()`` task creates an instance of ``HUEY_EMAIL_BACKEND`` and
   calls its ``send_messages()`` method with the original email messages.

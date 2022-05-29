@@ -5,7 +5,7 @@ from django.core.mail.backends.base import BaseEmailBackend
 from hueymail.tasks import dispatch_messages
 
 
-class HueyEmailBackend(BaseEmailBackend):
+class EmailBackend(BaseEmailBackend):
     """Email backend which dispatches messages via Huey."""
 
     def send_messages(self, email_messages):
