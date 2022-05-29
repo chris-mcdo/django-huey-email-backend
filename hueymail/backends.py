@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
 from django.core.mail.backends.base import BaseEmailBackend
 
 from hueymail.tasks import dispatch_messages
@@ -19,12 +17,5 @@ class EmailBackend(BaseEmailBackend):
         if not email_messages:
             return 0
 
-        try:
-            backend = settings.HUEY_EMAIL_BACKEND
-        except AttributeError:
-            raise ImproperlyConfigured(
-                "No email backend found. Please set the ``HUEY_EMAIL_BACKEND`` setting."
-            )
-
-        dispatch_messages(email_messages, backend)
+        dispatch_messages(email_messages)
         return len(email_messages)
