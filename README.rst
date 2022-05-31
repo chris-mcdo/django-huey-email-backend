@@ -29,14 +29,14 @@ and use it as your email backend:
     EMAIL_BACKEND = 'hueymail.backends.EmailBackend'
 
 
-Last, choose which email backend Huey should dispatch to via the ``HUEY_BACKEND``
+Last, choose which email backend Huey should dispatch to via the ``HUEY_EMAIL_BACKEND``
 setting:
 
 .. code-block:: python
 
     # settings.py
 
-    HUEY_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    HUEY_EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 
 How it works
